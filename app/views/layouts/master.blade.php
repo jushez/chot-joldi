@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
+    <link rel="shortcut icon" href="img/ico/favicon.png">
 
-    <title>Sticky Footer Template for Bootstrap</title>
+    <title>{{ ($pageTitle) ? $pageTitle  : 'Chot Joldi - Bike Messenger' }}</title>
 
     {{ HTML::style('css/bootstrap.min.css') }}
     {{ HTML::style('css/validationEngine.jquery.css') }}
