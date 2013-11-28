@@ -10,7 +10,7 @@ Web application for the bike messenger service localized for Bangladesh
 - PHP version 5.3.7
 - MCrypt PHP Extension
 
-### Development Environment Setting
+### Development Environment Settings
 
 - Create a virtualhost pointing to public directory
 - Do a composer update
