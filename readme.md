@@ -1,18 +1,16 @@
-chot-joldi-web
-==============
+#chot-joldi-web
 
 Web application for the bike messenger service localized for Bangladesh
 
 
-Installation instructions
-==============
+#Installation instructions
 
-## Server Requirements
+### Server Requirements
 
 - PHP version 5.3.7
 - MCrypt PHP Extension
 
-## Development Environment Setting
+### Development Environment Setting
 
 - Create a virtualhost pointing to public directory
 - Do a composer update
