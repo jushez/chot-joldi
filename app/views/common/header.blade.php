@@ -13,8 +13,19 @@
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
 				<li {{ ($active === 'home') ? 'class="active"' : '' }}>{{ HTML::linkRoute('/', 'Home') }}</li>
-				<li><a href="#about">About</a></li>
-				<li><a href="#contact">Contact</a></li>
+				@if(Auth::check())
+				<li {{ ($active === 'dashboard') ? 'class="active"' : '' }}>{{ HTML::linkRoute('dashboard', 'Dashboard') }}</li>
+				<li {{ ($active === 'settings') ? 'class="active dropdown"' : '' }}>
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->lastname }} <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="#">Settings</a></li>
+						<li class="divider"></li>
+						<li>{{ HTML::linkRoute('logout', 'Logout') }}</li>
+					</ul>
+				</li>
+				@else
+				<li {{ ($active === 'login') ? 'class="active"' : '' }}>{{ HTML::linkRoute('login', 'Login') }}</li>
+				@endif
 			</ul>
 		</div><!--/.nav-collapse -->
 	</div>
