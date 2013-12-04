@@ -30,7 +30,7 @@ class UserController extends BaseController {
 	    	(Input::get('remember-me') == 1) ? $remember = true : $remember =false;
 
 	    	if(Auth::attempt($user, $remember)){
-	    		return Redirect::route('dashboard');
+	    		return Redirect::intended('dashboard');
 	    	}else{
 	    		return Redirect::back()->withInput()->with('login_errors', true);
 	    	}

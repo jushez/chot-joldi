@@ -37,5 +37,5 @@ Route::get('login', array('as' => 'login', 'before' =>'guest', 'uses' => 'UserCo
 
 // Routes for testing
 Route::get('test', function(){
-	echo 'Here';
+	echo App::environment();
 });

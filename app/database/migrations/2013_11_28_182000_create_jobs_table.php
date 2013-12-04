@@ -15,14 +15,15 @@ class CreateJobsTable extends Migration {
 		Schema::create('jobs', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->bigInteger('userId');
-            $table->text('pickup_point');
-            $table->time('pickup_time');
-            $table->text('drop_point');
-            $table->time('drop_time');
+			$table->bigInteger('user_id');
+			$table->text('description');
+            $table->text('pickup_address');
+            $table->timestamp('pickup_time');
+            $table->text('drop_address');
+            $table->timestamp('drop_time');
             $table->integer('distance')->nullable();
-            $table->integer('respect_amount');
-            $table->text('comments')->nullable();
+            $table->float('job_value');
+            $table->integer('status');
 			$table->timestamps();
 		});
 	}
