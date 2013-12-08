@@ -30,6 +30,8 @@ class UserController extends BaseController {
 	    	(Input::get('remember-me') == 1) ? $remember = true : $remember =false;
 
 	    	if(Auth::attempt($user, $remember)){
+	    		$userInfo = Profile::find(Auth::user()->id);
+	    		Session::put('userInfo', array('first_name' => $userInfo->first_name, 'last_name' => $userInfo->last_name, 'mobile' => $userInfo->mobile, 'present_address' => $userInfo->present_address, 'permanent_address' => $userInfo->permanent_address, 'avatar_path' => $userInfo->avatar_path));
 	    		return Redirect::intended('dashboard');
 	    	}else{
 	    		return Redirect::back()->withInput()->with('login_errors', true);
@@ -44,6 +46,8 @@ class UserController extends BaseController {
 	}
 
 	public function logout(){
+		Session::forget('userInfo');
+		Session::flush();
 		Auth::logout();
 		return Redirect::route('login');
 	}

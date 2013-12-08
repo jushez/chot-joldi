@@ -1,3 +1,5 @@
+<?php $userInfo = Session::get('userInfo'); ?>
+
 <!-- Fixed navbar -->
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
 	<div class="container">
@@ -16,7 +18,7 @@
 				@if(Auth::check())
 				<li {{ ($active === 'dashboard') ? 'class="active"' : '' }}>{{ HTML::linkRoute('dashboard', 'Dashboard') }}</li>
 				<li {{ ($active === 'settings') ? 'class="active dropdown"' : '' }}>
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->lastname }} <b class="caret"></b></a>
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ $userInfo['last_name'] }} <b class="caret"></b></a>
 					<ul class="dropdown-menu">
 						<li><a href="#">Settings</a></li>
 						<li class="divider"></li>

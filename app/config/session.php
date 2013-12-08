@@ -94,7 +94,7 @@ return array(
 	|
 	*/
 
-	'cookie' => 'laravel_session',
+	'cookie' => 'chot_joldi_session',
 
 	/*
 	|--------------------------------------------------------------------------
