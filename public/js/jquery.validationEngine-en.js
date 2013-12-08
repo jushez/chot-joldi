@@ -137,9 +137,9 @@
                 },
                 
                 // --- CUSTOM RULES -- Those are specific to the demos, they can be removed or changed to your likings
-                "ajaxCheckStudent": {
-                    "url": "/validate-student",
-                    "alertText": "* Student ID not found!",
+                "ajaxCheckEmail": {
+                    "url": "/is-email-exist",
+                    "alertText": "* This email has already been taken!",
                     "alertTextLoad": "* Validating, please wait"
                 },
                 "ajaxUserCallPhp": {

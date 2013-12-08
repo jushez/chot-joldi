@@ -20,6 +20,13 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	protected $hidden = array('password');
 
 	/**
+	 * Set fillable attributes.
+	 *
+	 * @var array
+	 */
+	protected $fillable = array('email', 'password', 'type');
+
+	/**
 	 * Get the unique identifier for the user.
 	 *
 	 * @return mixed
@@ -47,6 +54,14 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	public function getReminderEmail()
 	{
 		return $this->email;
+	}
+
+	public static function isEmailExists($email){
+		$result = DB::table('users')->where('email', $email)->get();
+
+		if($result){
+			return $result;
+		}
 	}
 
 }

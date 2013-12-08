@@ -21,7 +21,6 @@ class CreateTableProfiles extends Migration {
 			$table->string('mobile', 11)->nullable();
 			$table->text('present_address');
 			$table->text('permanent_address');
-			$table->string('avatar', 50);
 			$table->string('avatar_path', 50)->nullable();
 			$table->timestamps();
 		});

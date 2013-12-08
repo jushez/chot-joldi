@@ -10,7 +10,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">Chot-Joldi</a>
+			{{ HTML::linkRoute('/', 'Chot-Joldi', null, array('class' => 'navbar-brand')) }}
 		</div>
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">

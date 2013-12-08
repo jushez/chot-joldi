@@ -31,6 +31,7 @@
     	@include('common.header')
 
     	<div class="container">
+            @include('common.flash')
 	        {{ $content }}
 	    </div><!-- End container -->
 

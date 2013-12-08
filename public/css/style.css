@@ -37,3 +37,16 @@ body {
 .container .credit {
   margin: 20px 0;
 }
+
+.login{
+  margin: 40% auto;
+}
+
+.register{
+  margin: 20% auto;
+}
+
+.form-heading{
+  text-align: center;
+  margin: 0 0 20px 0;
+}

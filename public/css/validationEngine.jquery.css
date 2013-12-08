@@ -1,6 +1,3 @@
-
-
-
 /* Z-INDEX */
  .formError { z-index: 990; }
     .formError .formErrorContent { z-index: 991; }
@@ -42,7 +39,7 @@
 }
 
 .formError .formErrorContent {
-	width: 100%;
+	width: 170%; /* Actual width 100% overriden */
 	background: #ee0101;
 	position:relative;
 	color: #fff;

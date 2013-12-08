@@ -15,8 +15,8 @@
 Route::group(array('before' => 'csrf'), function(){
 	// UserController routes
 	Route::post('verify', array('as' => 'verify', 'before' => 'csrf', 'uses' => 'UserController@postLogin'));
+	Route::post('save-user', array('as' => 'save-user', 'before' => 'csrf', 'uses' => 'UserController@saveUser'));
 });
-
 
 // Authentication route group
 Route::group(array('before' => 'auth'), function(){
@@ -25,14 +25,16 @@ Route::group(array('before' => 'auth'), function(){
 	Route::get('dashboard', array('as' => 'dashboard', 'uses' => "UserController@getDashboard"));
 });
 
+// Guest route group
+Route::group(array('before' => 'guest'), function(){
+	// UserController routes
+	Route::get('login', array('as' => 'login', 'uses' => 'UserController@getLogin'));
+	Route::get('register', array('as' => 'register', 'uses' => 'UserController@getRegister'));
+});
+
 // HomeController routes
 Route::get('/', array('as' => '/', 'uses' => 'HomeController@getHome'));
-
-
-// UserController routes
-Route::get('login', array('as' => 'login', 'before' =>'guest', 'uses' => 'UserController@getLogin'));
-
-
+Route::get('is-email-exist', array('as' => 'is-email-exist', 'uses' => 'UserController@isEmailExist'));
 
 
 // Routes for testing

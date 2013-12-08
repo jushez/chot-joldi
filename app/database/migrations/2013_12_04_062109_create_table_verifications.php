@@ -16,6 +16,7 @@ class CreateTableVerifications extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('user_id');
+			$table->string('hash', 32);
 			$table->boolean('email')->default(0);
 			$table->boolean('address')->default(0);
 			$table->enum('document', array('National ID', 'Driving License', 'Passport'))->nullable();

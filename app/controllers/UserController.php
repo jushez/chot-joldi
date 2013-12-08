@@ -12,8 +12,8 @@ class UserController extends BaseController {
 
 	public function postLogin(){
 		$rules = array(
-			'email'=>'Required|Email|Between:3,64', 
-			'password'=>'Required'
+			'email' => 'Required|Email|Between:3,64', 
+			'password' => 'Required'
 		);
 
 	    $validator = Validator::make(Input::all(), $rules);
@@ -43,6 +43,80 @@ class UserController extends BaseController {
 		$this->layout->pageTitle = 'Chot Joldi - Dashboard';
 		$this->layout->active = 'dashboard';
 		$this->layout->content = View::make('user.dashboard');
+	}
+
+	public function getRegister(){
+		$this->layout->pageTitle = 'Chot Joldi - Registration';
+		$this->layout->active = 'login';
+		$this->layout->content = View::make('user.register');
+	}
+
+	public function saveUser(){
+		$rules = array(
+			'first_name' => 'Required',
+			'last_name' => 'Required',
+			'email' => 'Required|Unique:users|Email|Between:3,64', 
+			'password' => 'Required',
+			'confirm_password' => 'Required|Same:password'
+		);
+
+	    $validator = Validator::make(Input::all(), $rules);
+
+	    if ($validator->fails()){
+	        return Redirect::back()->withInput()->withErrors($validator);
+	    }else{
+	    	$user = array(
+	    		'email' => Input::get('email'),
+	    		'password' => Hash::make(Input::get('password')),
+	    		'type' => Input::get('type')
+	    	);
+
+	    	if($user = User::create($user)){
+	    		$profileData = array(
+	    			'user_id' => $user->id,
+	    			'first_name' => Input::get('first_name'),
+	    			'last_name' => Input::get('last_name'),
+	    			'mobile' => '',
+	    			'present_address' => '',
+	    			'permanent_address' => '',
+	    			'avatar_path' => '',
+	    			'create_at' => new DateTime(),
+	    			'updated_at' => new DateTime()
+	    		);
+
+	    		$verificationData = array(
+	    			'user_id' => $user->id,
+	    			'hash' => md5(Input::get('email') . 'chot-joldi' . time()),
+	    			'email' => 0,
+	    			'address' => 0,
+	    			'document' => '',
+	    			'created_at' => new DateTime(),
+	    			'updated_at' => new DateTime()
+	    		);
+
+	    		Profile::create($profileData);
+	    		Verification::create($verificationData);
+
+	    		Session::flash('messages', 'Registration completed! You may login now.');
+	    		return Redirect::route('login');
+	    	}
+	    }
+	}
+
+	public function isEmailExist(){
+		$email = Input::get('fieldValue');
+		$fieldId = Input::get('fieldId');
+
+		$arrayToJs = array();
+		$arrayToJs[0] = $fieldId;
+
+		if(User::isEmailExists($email)){
+			$arrayToJs[1] = false;
+			return Response::json($arrayToJs);
+		}else{
+			$arrayToJs[1] = true;
+			return Response::json($arrayToJs);
+		}
 	}
 
 	public function logout(){
