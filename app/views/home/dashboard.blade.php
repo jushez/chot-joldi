@@ -1,3 +1,4 @@
-User dashboard protected page :)
-<pre>
-{{ dd($profile) }}
+<div class="row">
+	<div class="col-xs-4">Left</div>
+	<div class="col-xs-8">Right</div>
+</div>
