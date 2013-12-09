@@ -39,12 +39,6 @@ class UserController extends BaseController {
 	    }
 	}
 
-	public function getDashboard(){
-		$this->layout->pageTitle = 'Chot Joldi - Dashboard';
-		$this->layout->active = 'dashboard';
-		$this->layout->content = View::make('user.dashboard');
-	}
-
 	public function getRegister(){
 		$this->layout->pageTitle = 'Chot Joldi - Registration';
 		$this->layout->active = 'login';

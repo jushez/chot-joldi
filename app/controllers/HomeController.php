@@ -16,4 +16,16 @@ class HomeController extends BaseController {
 		$this->layout->content = View::make('home.index');
 	}
 
+	public function getDashboard(){
+		$this->layout->pageTitle = 'Chot Joldi - Dashboard';
+		$this->layout->active = 'dashboard';
+
+		$data = array(
+			'profile' => Profile::find(Auth::user()->id),
+			'verification' => Verification::find(Auth::user()->id)
+		);
+
+		$this->layout->content = View::make('home.dashboard', $data);
+	}
+
 }

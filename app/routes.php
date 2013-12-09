@@ -22,7 +22,9 @@ Route::group(array('before' => 'csrf'), function(){
 Route::group(array('before' => 'auth'), function(){
 	// UserController routes
 	Route::get('logout', array('as' => 'logout', 'uses' => "UserController@logout"));
-	Route::get('dashboard', array('as' => 'dashboard', 'uses' => "UserController@getDashboard"));
+
+	// HomeController routes
+	Route::get('dashboard', array('as' => 'dashboard', 'uses' => "HomeController@getDashboard"));
 });
 
 // Guest route group
