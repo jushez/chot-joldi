@@ -94,8 +94,13 @@ class UserController extends BaseController {
 	    			'updated_at' => new DateTime()
 	    		);
 
+	    		// Creating user profile & verifications
 	    		Profile::create($profileData);
 	    		Verification::create($verificationData);
+
+	    		Mail::send('email.welcome', array('name' => Input::get('first_name') . ' ' . Input::get('last_name')), function($message){
+	    			$message->to(Input::get('email'), Input::get('first_name') . ' ' . Input::get('last_name'))->subject('Welcome to chot-joldi!');
+	    		});
 
 	    		Session::flash('messages', 'Registration completed! You may login now.');
 	    		return Redirect::route('login');

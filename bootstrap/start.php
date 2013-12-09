@@ -28,7 +28,7 @@ $app->redirectIfTrailingSlash();
 
 $env = $app->detectEnvironment(array(
 
-	'local' => array('macbookpro.local'),
+	'local' => array('macbookpro.local', 'Ronju-Vantage'),
 
 ));
 
