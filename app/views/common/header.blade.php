@@ -10,6 +10,9 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
+			<div class="toggle-nav visible-xs" data-toggle="offcanvas">
+				<span class="glyphicon glyphicon-tasks"></span>
+			</div> 
 			{{ HTML::linkRoute('/', 'Chot-Joldi', null, array('class' => 'navbar-brand')) }}
 		</div>
 		<div class="navbar-collapse collapse">
