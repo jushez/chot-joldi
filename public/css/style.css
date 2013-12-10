@@ -98,3 +98,8 @@ body {
   cursor: pointer;
   z-index: 9999;
 }
+
+.avatar{
+  width: 64px;
+  margin-bottom: 10px;
+}

@@ -21,11 +21,17 @@ class HomeController extends BaseController {
 		$this->layout->active = 'dashboard';
 
 		$data = array(
-			'profile' => Profile::find(Auth::user()->id),
-			'verification' => Verification::find(Auth::user()->id)
+			'profile' => User::find(Auth::user()->id)->getUserProfile,
+			'verification' => User::find(Auth::user()->id)->getUserVerification
 		);
 
 		$this->layout->content = View::make('home.dashboard', $data);
+	}
+
+	public function verifyEmail(){
+		$this->layout->pageTitle = 'Chot Joldi - Dashboard';
+		$this->layout->active = 'dashboard';
+		$this->layout->content = 'Email verification is under construction';
 	}
 
 }

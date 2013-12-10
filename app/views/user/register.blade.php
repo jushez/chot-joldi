@@ -26,6 +26,10 @@
 				<div class="form-group">
 					{{ Form::password('confirm_password', array('class' => 'form-control validate[required, equals[password]]', 'placeholder' => 'Confirm Password')) }}
 				</div>
+
+				<div class="form-group">
+					{{ Form::select('gender', array('Male' => 'Male', 'Female' => 'Female'), 'Male', array('class' => 'form-control')); }}
+				</div>
 	
 				<div class="form-group">
 					{{ Form::select('type', array('Job Seeker' => 'Job Seeker', 'Job Poster' => 'Job Poster'), 'Job Seeker', array('class' => 'form-control')); }}

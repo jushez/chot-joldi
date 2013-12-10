@@ -15,7 +15,7 @@ class CreateTableVerifications extends Migration {
 		Schema::create('verifications', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('user_id');
+			$table->integer('user_id')->unique();
 			$table->string('hash', 32);
 			$table->boolean('email')->default(0);
 			$table->boolean('address')->default(0);

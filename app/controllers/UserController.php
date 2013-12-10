@@ -20,7 +20,6 @@ class UserController extends BaseController {
 
 	    if ($validator->fails()){
 	        return Redirect::back()->withInput()->withErrors($validator);
-
 	    }else{
 	    	$user = array(
 	    		'email' => Input::get('email'),
@@ -34,7 +33,7 @@ class UserController extends BaseController {
 	    		Session::put('userInfo', array('first_name' => $userInfo->first_name, 'last_name' => $userInfo->last_name, 'mobile' => $userInfo->mobile, 'present_address' => $userInfo->present_address, 'permanent_address' => $userInfo->permanent_address, 'avatar_path' => $userInfo->avatar_path));
 	    		return Redirect::intended('dashboard');
 	    	}else{
-	    		return Redirect::back()->withInput()->with('login_errors', true);
+	    		return Redirect::back()->withInput()->with('messages', 'Username or password incorrect!');
 	    	}
 	    }
 	}
@@ -70,6 +69,7 @@ class UserController extends BaseController {
 	    			'user_id' => $user->id,
 	    			'first_name' => Input::get('first_name'),
 	    			'last_name' => Input::get('last_name'),
+	    			'gender' => Input::get('gender'),
 	    			'mobile' => '',
 	    			'present_address' => '',
 	    			'permanent_address' => '',
@@ -96,8 +96,7 @@ class UserController extends BaseController {
 	    			$message->to(Input::get('email'), Input::get('first_name') . ' ' . Input::get('last_name'))->subject('Welcome to chot-joldi!');
 	    		});
 
-	    		Session::flash('messages', 'Registration completed! You may login now.');
-	    		return Redirect::route('login');
+	    		return Redirect::route('login')->with('messages', 'Registration completed! You may login now.');
 	    	}
 	    }
 	}
