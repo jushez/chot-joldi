@@ -26,7 +26,7 @@ Route::group(array('before' => 'auth'), function(){
 	// HomeController routes
 	Route::get('dashboard', array('as' => 'dashboard', 'uses' => "HomeController@getDashboard"));
 	// Route::get('verify-email/{email}', array('as' => 'verify-email', 'uses' => "HomeController@verifyEmail"))->where('email', '([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})');
-	Route::get('verify-email', array('as' => 'verify-email', 'uses' => "HomeController@verifyEmail"));
+	Route::get('send-verification-email', array('as' => 'send-verification-email', 'uses' => "HomeController@sendVerificationEmail"));
 });
 
 // Guest route group
@@ -38,6 +38,9 @@ Route::group(array('before' => 'guest'), function(){
 
 // HomeController routes
 Route::get('/', array('as' => '/', 'uses' => 'HomeController@getHome'));
+Route::get('verify-email/{hash}', array('as' => 'verify-my-email', 'uses' => 'HomeController@verifyEmail'))->where('hash', '[a-f\d]{32,32}');
+
+// UserController routes
 Route::get('is-email-exist', array('as' => 'is-email-exist', 'uses' => 'UserController@isEmailExist'));
 
 

@@ -57,9 +57,8 @@
 							<tr>
 								<th>Verification Status</th>
 								<td> 
-									@if(empty($verfication->email))
-									{{ HTML::linkRoute('verify-email', 'Verify Email', null, array('class' => 'verify-email')) }}
-									@endif
+									{{ ($verification->email == 1) ? '<span class="glyphicon glyphicon-ok"></span>
+ Email verified' : HTML::linkRoute('send-verification-email', 'Verify Email', null, array('class' => 'verify-email')) }}
 								</td>
 							</tr>
 						</table>

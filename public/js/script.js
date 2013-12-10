@@ -9,8 +9,13 @@ $(function(){
 	$('.verify-email').on('click', function(evt){
 		evt.preventDefault();
 
-		$.get('verify-email', function(response){
-			alert(response);
+		var $link = $(this);
+		$link.text('Please wait....');
+
+		$.get('send-verification-email', function(response){
+			if(response == '1'){
+				$link.text('Email sent! Resend?')
+			}
 		});
 
 	});
