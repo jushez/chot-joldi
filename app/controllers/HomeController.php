@@ -29,9 +29,14 @@ class HomeController extends BaseController {
 	}
 
 	public function verifyEmail(){
-		$this->layout->pageTitle = 'Chot Joldi - Dashboard';
-		$this->layout->active = 'dashboard';
-		$this->layout->content = 'Email verification is under construction';
+	    // dd(Auth::user()->email); exit;
+	    $profile = User::find(Auth::user()->id)->getUserProfile;
+
+	    Mail::send('email.verify', array('name' => $profile->first_name . ' ' . $profile->last_name), function($message){
+			$message->to(Auth::user()->email, 'Mohammad Shoriful Islam Ronju')->subject('Verify your chot-joldi email!');
+		});
+
+	    return true;
 	}
 
 }

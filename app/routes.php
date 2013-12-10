@@ -25,6 +25,7 @@ Route::group(array('before' => 'auth'), function(){
 
 	// HomeController routes
 	Route::get('dashboard', array('as' => 'dashboard', 'uses' => "HomeController@getDashboard"));
+	// Route::get('verify-email/{email}', array('as' => 'verify-email', 'uses' => "HomeController@verifyEmail"))->where('email', '([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})');
 	Route::get('verify-email', array('as' => 'verify-email', 'uses' => "HomeController@verifyEmail"));
 });
 

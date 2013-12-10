@@ -58,7 +58,7 @@
 								<th>Verification Status</th>
 								<td> 
 									@if(empty($verfication->email))
-									{{ HTML::linkRoute('verify-email', 'Verify Email') }}
+									{{ HTML::linkRoute('verify-email', 'Verify Email', null, array('class' => 'verify-email')) }}
 									@endif
 								</td>
 							</tr>
