@@ -38,11 +38,16 @@ class HomeController extends BaseController {
 			$message->to(Auth::user()->email, 'Mohammad Shoriful Islam Ronju')->subject('Verify your chot-joldi email!');
 		});
 
-	    return '1';
+	    if(Request::ajax()){
+	    	return '1';	
+	    }
+
+	    return Redirect::back()->with('messages', 'Verification email sent!');
+	    
 	}
 
 	public function verifyEmail($hash){
-		$affectedRows = Verification::where('hash', $hash)->update(array('hash' => 'Hash used!', 'email' => 1));
+		$affectedRows = Verification::where('hash', $hash)->update(array('hash' => '1', 'email' => 1));
 		
 		if($affectedRows > 0){
 			return Redirect::route('dashboard');

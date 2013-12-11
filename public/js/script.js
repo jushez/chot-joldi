@@ -1,5 +1,5 @@
 $(function(){
-	// Code goes here.
+	
 	$(".validate-me").validationEngine();
 
 	$('[data-toggle=offcanvas]').click(function() {
@@ -13,7 +13,7 @@ $(function(){
 		$link.text('Please wait....');
 
 		$.get('send-verification-email', function(response){
-			if(response == '1'){
+			if(response === '1'){
 				$link.text('Email sent! Resend?')
 			}
 		});
