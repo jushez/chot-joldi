@@ -2,8 +2,8 @@
 
 	<div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
 		<div class="list-group">
-			<a href="#" class="list-group-item active">Link</a>
-			<a href="#" class="list-group-item">Link</a>
+			<a href="#" class="list-group-item active">Job Board</a>
+			<a href="#" class="list-group-item">My Jobs</a>
 			<a href="#" class="list-group-item">Link</a>
 			<a href="#" class="list-group-item">Link</a>
 			<a href="#" class="list-group-item">Link</a>
@@ -67,6 +67,34 @@
 				</div>
 			</div><!-- end span -->
 
+			@if(Auth::user()->type === 'Job Seeker')
+			
+			<div class="col-6 col-sm-6 col-lg-6">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h3 class="panel-title">Applied Jobs</h3>
+					</div>
+					<div class="panel-body">
+						List of latest 5 applied jobs :)
+					</div>
+				</div>
+			</div><!-- end span -->
+
+			@else
+
+			<div class="col-6 col-sm-6 col-lg-6">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h3 class="panel-title">Job Posted</h3>
+					</div>
+					<div class="panel-body">
+						List of latest 10 job posted :)
+					</div>
+				</div>
+			</div><!-- end span -->			
+
+			@endif
+
 			<div class="col-6 col-sm-6 col-lg-6">
 				<div class="panel panel-default">
 					<div class="panel-heading">
@@ -78,7 +106,7 @@
 				</div>
 			</div><!-- end span -->
 
-			<div class="col-6 col-sm-6 col-lg-4">
+			<div class="col-6 col-sm-6 col-lg-6">
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h3 class="panel-title">Panel title</h3>
@@ -89,18 +117,7 @@
 				</div>
 			</div><!-- end span -->
 
-			<div class="col-6 col-sm-6 col-lg-4">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title">Panel title</h3>
-					</div>
-					<div class="panel-body">
-						Panel content
-					</div>
-				</div>
-			</div><!-- end span -->
-
-			<div class="col-6 col-sm-6 col-lg-4">
+			<div class="col-6 col-sm-6 col-lg-6">
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h3 class="panel-title">Panel title</h3>
