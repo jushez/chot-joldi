@@ -21,7 +21,7 @@
 			<div class="col-6 col-sm-6 col-lg-6">
 				<div class="panel panel-primary">
 					<div class="panel-heading">
-						<h3 class="panel-title">Personal Details</h3>
+						<h3 class="panel-title"><span class="glyphicon glyphicon-fire"></span> Personal Details</h3>
 					</div>
 					<div class="panel-body">
 
@@ -61,6 +61,11 @@
  Email verified' : HTML::linkRoute('send-verification-email', 'Verify Email', null, array('class' => 'verify-email')) }}
 								</td>
 							</tr>
+							<tr>
+								<td colspan="2">
+								{{ HTML::linkRoute('edit-profile', 'Update Profile', null, array('title' => 'Update Profile', 'class' => 'btn btn-primary')) }}
+								</td>
+							</tr>
 						</table>
 						
 					</div>
@@ -72,7 +77,7 @@
 			<div class="col-6 col-sm-6 col-lg-6">
 				<div class="panel panel-primary">
 					<div class="panel-heading">
-						<h3 class="panel-title">Applied Jobs</h3>
+						<h3 class="panel-title"><span class="glyphicon glyphicon-briefcase"></span> Applied Jobs</h3>
 					</div>
 					<div class="panel-body">
 						List of latest 5 applied jobs :)

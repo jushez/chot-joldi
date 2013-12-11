@@ -16,6 +16,9 @@ Route::group(array('before' => 'csrf'), function(){
 	// UserController routes
 	Route::post('verify', array('as' => 'verify', 'before' => 'csrf', 'uses' => 'UserController@postLogin'));
 	Route::post('save-user', array('as' => 'save-user', 'before' => 'csrf', 'uses' => 'UserController@saveUser'));
+
+	// HomeController routes
+	Route::post('save-profile', array('as' => 'save-profile', 'uses' => 'HomeController@saveProfile'));
 });
 
 // Authentication route group
@@ -25,8 +28,9 @@ Route::group(array('before' => 'auth'), function(){
 
 	// HomeController routes
 	Route::get('dashboard', array('as' => 'dashboard', 'uses' => "HomeController@getDashboard"));
-	// Route::get('verify-email/{email}', array('as' => 'verify-email', 'uses' => "HomeController@verifyEmail"))->where('email', '([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})');
 	Route::get('send-verification-email', array('as' => 'send-verification-email', 'uses' => "HomeController@sendVerificationEmail"));
+	Route::get('edit-profile', array('as' => 'edit-profile', 'uses' => 'HomeController@editProfile'));
+
 });
 
 // Guest route group

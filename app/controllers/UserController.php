@@ -48,8 +48,8 @@ class UserController extends BaseController {
 		$rules = array(
 			'first_name' => 'Required',
 			'last_name' => 'Required',
-			'email' => 'Required|Unique:users|Email|Between:3,64', 
-			'password' => 'Required',
+			'email' => 'Required|Unique:users|Email|Between:3,50', 
+			'password' => 'Required|Between:6,50',
 			'confirm_password' => 'Required|Same:password'
 		);
 
