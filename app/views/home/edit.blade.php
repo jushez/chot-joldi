@@ -3,7 +3,7 @@
 		
 		<div class="well">
 
-			{{ Form::open(array('route' => 'save-profile', 'class' => 'form-horizontal validate-me', 'role' => 'form')) }}
+			{{ Form::open(array('route' => 'save-profile', 'files'=> true, 'class' => 'form-horizontal validate-me', 'role' => 'form')) }}
 			<h2 class="form-heading">Update Profile</h2>
 			@include('common.errors')
 
@@ -24,7 +24,7 @@
 			<div class="form-group">
 				{{ Form::label('password', 'Password:', array('class' => 'col-xs-3 control-label')) }}
 				<div class="col-xs-9">
-					{{ Form::password('password', array('id' => 'password', 'class' => 'form-control validate[required, minSize[6], maxSize[50]]', 'placeholder' => 'Password')) }}
+					{{ Form::password('password', array('id' => 'password', 'class' => 'form-control validate[minSize[6], maxSize[50]]', 'placeholder' => 'Password')) }}
 					
 				</div>
 			</div>
@@ -32,7 +32,28 @@
 			<div class="form-group">
 				{{ Form::label('confirm_password', 'Confirm Password:', array('class' => 'col-xs-3 control-label')) }}
 				<div class="col-xs-9">
-					{{ Form::password('confirm_password', array('class' => 'form-control validate[required, equals[password], minSize[6], maxSize[50]]', 'placeholder' => 'Confirm Password')) }}
+					{{ Form::password('confirm_password', array('class' => 'form-control validate[condRequired[password], equals[password], maxSize[50]]', 'placeholder' => 'Confirm Password')) }}
+				</div>
+			</div>
+
+			<div class="form-group">
+				{{ Form::label('profile_picture', 'Profile Picture:', array('class' => 'col-xs-3 control-label')) }}
+				<div class="col-xs-9">
+					{{ Form::file('profile_picture') }}
+				</div>
+			</div>
+
+			<div class="form-group">
+				{{ Form::label('gender', 'Gender:', array('class' => 'col-xs-3 control-label')) }}
+				<div class="col-xs-9">
+					{{ Form::select('gender', array('Male' => 'Male', 'Female' => 'Female'), 'Male', array('class' => 'form-control')); }}
+				</div>
+			</div>
+
+			<div class="form-group">
+				{{ Form::label('mobile', 'Mobile:', array('class' => 'col-xs-3 control-label')) }}
+				<div class="col-xs-9">
+					{{ Form::text('mobile', $profile->mobile, array('class' => 'form-control validate[required, custom[integer], minSize[11], maxSize[11]]', 'placeholder' => 'Confirm Password')) }}
 				</div>
 			</div>
 
@@ -47,13 +68,6 @@
 				{{ Form::label('permanent_address', 'Permanent Address:', array('class' => 'col-xs-3 control-label')) }}
 				<div class="col-xs-9">
 					{{ Form::textarea('permanent_address', $profile->permanent_address, array('class' => 'form-control validate[minSize[5], maxSize[100]]', 'rows' => 4, 'placeholder' => 'Permanent address')) }}
-				</div>
-			</div>
-
-			<div class="form-group">
-				{{ Form::label('gender', 'Gender:', array('class' => 'col-xs-3 control-label')) }}
-				<div class="col-xs-9">
-					{{ Form::select('gender', array('Male' => 'Male', 'Female' => 'Female'), 'Male', array('class' => 'form-control')); }}
 				</div>
 			</div>
 

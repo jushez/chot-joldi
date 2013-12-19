@@ -38,11 +38,13 @@ class HomeController extends BaseController {
 		$rules = array(
 			'first_name' => 'Required|Min:3|Max:50',
 			'last_name' => 'Required|Min:3|Max:50',
-			'password' => 'Required|Between:6,50',
-			'confirm_password' => 'Required|Same:password',
+			'password' => 'Between:6,50',
+			'profile_picture' => 'Mimes:jpeg,bmp,png,gif|Image|max:200',
+			'gender' => 'Required',
+			'mobile' => 'Required|Numeric',
+			'confirm_password' => 'Same:password',
 			'present_address' => 'Required|Between:5,100',
 			'permanent_address' => 'Between:5,100',
-			'gender' => 'Required',
 		);
 
 		$validator = Validator::make(Input::all(), $rules);
@@ -50,8 +52,39 @@ class HomeController extends BaseController {
 		if($validator->fails()){
 		    return Redirect::back()->withInput()->with('errors', $validator->messages());
 		}else{
+
+			$fileName = '';
+
+			if(Input::hasFile('profile_picture')){
+                $fileName = mt_rand() . '-' . Auth::user()->id . '.' . Input::file('profile_picture')->getClientOriginalExtension();
+                
+                // TODO: Remove old profile picture if uploaded
+
+                // If there's avatars directory in uploads then save profile picture.
+                if(File::isDirectory(public_path().'/uploads/avatars')){
+                	Input::file('profile_picture')->move('uploads/avatars', $fileName);
+                }else{
+                	if(File::isWritable(public_path().'/uploads/')){
+                		File::makeDirectory(public_path().'/uploads/avatars',  $mode = 0777, $recursive = false);
+                		Input::file('profile_picture')->move('uploads/avatars/', $fileName);	
+					}else{
+		                return Redirect::back()->withInput()->with('messages', 'Please change permission to uploads directory!');
+					}
+                }
+            }
 			
-			Profile::where('user_id', '=', Auth::user()->id)->update(array('first_name' => Input::get('first_name'), 'last_name' => Input::get('last_name'), 'present_address' => Input::get('present_address'), 'permanent_address' => Input::get('permanent_address'), 'gender' => Input::get('gender')));
+			$profileData = array(
+				'first_name' => Input::get('first_name'), 
+				'last_name' => Input::get('last_name'), 
+				'gender' => Input::get('gender'), 
+				'mobile' => Input::get('mobile'), 
+				'present_address' => Input::get('present_address'), 
+				'permanent_address' => Input::get('permanent_address'), 
+				'avatar_path' => ($fileName) ? 'uploads/avatars/'. $fileName : '', 
+				'updated_at' => new DateTime()
+			);
+
+			Profile::where('user_id', '=', Auth::user()->id)->update($profileData);
 
 			if(Input::has('password')){
 				User::where('id', Auth::user()->id)->update(array('password' => Hash::make(Input::get('password'))));

@@ -27,6 +27,8 @@
 
 						@if($profile->avatar_path == '')
 						{{ HTML::image(($profile->gender === 'Male') ? 'img/male.png' : 'img/female.png', 'Avatar', array('class' => 'avatar'))}}
+						@else
+						{{ HTML::image($profile->avatar_path, 'Avatar', array('class' => 'avatar'))}}
 						@endif
 
 						<table class="table">
