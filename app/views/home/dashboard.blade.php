@@ -54,7 +54,7 @@
 							</tr>
 							<tr>
 								<th>Permanent Address</th>
-								<td>{{ ($profile->permanen_address == '') ? 'n/a' : $profile->permanen_address }}</td>
+								<td>{{ ($profile->permanent_address == '') ? 'n/a' : $profile->permanent_address }}</td>
 							</tr>
 							<tr>
 								<th>Verification Status</th>
