@@ -24,13 +24,9 @@
 						<h3 class="panel-title"><span class="glyphicon glyphicon-fire"></span> Personal Details</h3>
 					</div>
 					<div class="panel-body">
-
-						@if($profile->avatar_path == '')
-						{{ HTML::image(($profile->gender === 'Male') ? 'img/male.png' : 'img/female.png', 'Avatar', array('class' => 'avatar'))}}
-						@else
-						{{ HTML::image($profile->avatar_path, 'Avatar', array('class' => 'avatar'))}}
-						@endif
-
+						<!-- {{ HTML::image($profile->avatar_path, 'Avatar', array('class' => 'avatar'))}} -->
+						{{ HTML::image(($profile->avatar_path) ? Image::thumb($profile->avatar_path, 64) : (($profile->gender === 'Male') ? 'img/male.png' : 'img/female.png'), 'Avatar', array('class' => 'avatar'))}}
+						
 						<table class="table">
 							<tr>
 								<th>Name</th>
