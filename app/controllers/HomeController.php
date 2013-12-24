@@ -39,7 +39,7 @@ class HomeController extends BaseController {
 			'first_name' => 'Required|Min:3|Max:50',
 			'last_name' => 'Required|Min:3|Max:50',
 			'password' => 'Between:6,50',
-			'profile_picture' => 'Mimes:jpeg,bmp,png,gif|Image|max:200',
+			'profile_picture' => 'Mimes:jpeg,bmp,png,gif|Image|max:10240',
 			'gender' => 'Required',
 			'mobile' => 'Required|Numeric',
 			'confirm_password' => 'Same:password',
@@ -62,11 +62,15 @@ class HomeController extends BaseController {
 
                 // If there's avatars directory in uploads then save profile picture.
                 if(File::isDirectory(public_path().'/uploads/avatars')){
-                	Input::file('profile_picture')->move('uploads/avatars', $fileName);
+                	// Input::file('profile_picture')->move('uploads/avatars', $fileName);
+                	Image::upload(Input::file('profile_picture'), $fileName, 'avatars', true);
+                	// Image::resize(public_path().'/uploads/avatars/' . $fileName, 64, null, true, 100);
                 }else{
                 	if(File::isWritable(public_path().'/uploads/')){
                 		File::makeDirectory(public_path().'/uploads/avatars',  $mode = 0777, $recursive = false);
-                		Input::file('profile_picture')->move('uploads/avatars/', $fileName);	
+                		// Input::file('profile_picture')->move('uploads/avatars/', $fileName);
+                		Image::upload(Input::file('profile_picture'), $fileName, 'avatars', true);
+                		// Image::resize(public_path().'/uploads/avatars/' . $fileName, 64, null, true, 100);
 					}else{
 		                return Redirect::back()->withInput()->with('messages', 'Please change permission to uploads directory!');
 					}
@@ -80,7 +84,7 @@ class HomeController extends BaseController {
 				'mobile' => Input::get('mobile'), 
 				'present_address' => Input::get('present_address'), 
 				'permanent_address' => Input::get('permanent_address'), 
-				'avatar_path' => ($fileName) ? 'uploads/avatars/'. $fileName : '', 
+				'avatar_path' => ($fileName) ? '/uploads/avatars/'. $fileName : '', 
 				'updated_at' => new DateTime()
 			);
 

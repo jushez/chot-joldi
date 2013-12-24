@@ -51,4 +51,5 @@ Route::get('is-email-exist', array('as' => 'is-email-exist', 'uses' => 'UserCont
 // Routes for testing
 Route::get('test', function(){
 	echo App::environment();
+	// print_r(Config::get('image.upload_path'));
 });

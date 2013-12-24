@@ -178,7 +178,7 @@ return array(
 		'URL'             => 'Illuminate\Support\Facades\URL',
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
-		'Image'			  => 'App\Facades\ImageFacade',
+		'Image'			  => 'App\Facades\Image',
 
 	),
 
