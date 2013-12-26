@@ -44,6 +44,7 @@ class Image {
     */
     public function resize($url, $width = 100, $height = null, $crop = false, $quality = null){
 
+
         if ($url){
             // URL info
             $info = pathinfo($url);
@@ -57,8 +58,9 @@ class Image {
             // Directories & file names
             
             $fileName       = $info['basename'];
-            $sourceDirPath  = public_path() . '/' . $info['dirname'];
+            $sourceDirPath  = $info['dirname'];
             $sourceFilePath = $sourceDirPath . '/' . $fileName;
+
             $targetDirName  = $width . 'x' . $height . ($crop ? '_crop' : '');
             $targetDirPath  = $sourceDirPath . '/' . $targetDirName . '/';
             $targetFilePath = $targetDirPath . $fileName;
@@ -106,13 +108,14 @@ class Image {
     * @return string
     */
     public function upload($file, $filename, $dir = null, $createDimensions = false){
+
         if ($file){
             // Generate random dir
             if ( ! $dir) $dir = str_random(8);
 
             // Get file info and try to move
             $destination = Config::get('image.upload_path') . '/' . $dir;
-            $filename    = ($filename) ? $filename:$file->getClientOriginalName();
+            $filename    = ($filename) ? $filename : $file->getClientOriginalName();
             $path        = Config::get('image.upload_path') . '/' . $dir . '/' . $filename;
             $uploaded    = $file->move($destination, $filename);
 
@@ -134,6 +137,8 @@ class Image {
         $defaultDimensions = Config::get('image.dimensions');
 
         if (is_array($defaultDimensions)) $dimensions = array_merge($defaultDimensions, $dimensions);
+
+        // echo '<pre>'; dd($dimensions); exit;
 
         foreach ($dimensions as $dimension){
             // Get dimmensions and quality

@@ -25,6 +25,7 @@
 				{{ Form::label('password', 'Password:', array('class' => 'col-xs-3 control-label')) }}
 				<div class="col-xs-9">
 					{{ Form::password('password', array('id' => 'password', 'class' => 'form-control validate[minSize[6], maxSize[50]]', 'placeholder' => 'Password')) }}
+					<span class="help-block">Only if you want to change your password.</span>
 					
 				</div>
 			</div>
@@ -40,6 +41,7 @@
 				{{ Form::label('profile_picture', 'Profile Picture:', array('class' => 'col-xs-3 control-label')) }}
 				<div class="col-xs-9">
 					{{ Form::file('profile_picture') }}
+					<span class="help-block">Only if you want to change profile picture.</span>
 				</div>
 			</div>
 
