@@ -1,0 +1,1 @@
+Please make this folder writable by the application. This is required for users profile picture support :)

@@ -16,8 +16,6 @@ class CreateTableProfiles extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('user_id')->unique();
-			$table->string('first_name', 50);
-			$table->string('last_name', 50);
 			$table->enum('gender', array('Male', 'Female'));
 			$table->string('mobile', 11)->nullable();
 			$table->text('present_address');

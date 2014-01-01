@@ -9,7 +9,7 @@ class UsersTableSeeder extends Seeder {
 	 */
 	public function run(){
 		$users = array(
-			array('email' => 'smronju@gmail.com', 'password' => Hash::make('c0mm0n'), 'type' => 'Job Seeker', 'status' => 1, 'created_at' => new DateTime(), 'updated_at' => new DateTime())
+			array('first_name' => 'Mohammad Shoriful Islam', 'last_name' => 'Ronju', 'email' => 'smronju@gmail.com', 'password' => Hash::make('c0mm0n'), 'type' => 'Job Poster', 'status' => 1, 'created_at' => new DateTime(), 'updated_at' => new DateTime())
 		);
 
 		DB::table('users')->insert($users);

@@ -24,15 +24,13 @@
 						<h3 class="panel-title"><span class="glyphicon glyphicon-fire"></span> Personal Details</h3>
 					</div>
 					<div class="panel-body">
-
-						@if($profile->avatar_path == '')
-						{{ HTML::image(($profile->gender === 'Male') ? 'img/male.png' : 'img/female.png', 'Avatar', array('class' => 'avatar'))}}
-						@endif
-
+						<!-- {{ HTML::image($profile->avatar_path, 'Avatar', array('class' => 'avatar')) }} -->
+						{{ HTML::image(($profile->avatar_path) ? Image::thumb($profile->avatar_path, 64) : (($profile->gender === 'Male') ? 'img/male.png' : 'img/female.png'), 'Avatar', array('class' => 'avatar'))}}
+						
 						<table class="table">
 							<tr>
 								<th>Name</th>
-								<td>{{ $profile->first_name . ' ' . $profile->last_name }}</td>
+								<td>{{ Auth::user()->first_name . ' ' . Auth::user()->last_name }}</td>
 							</tr>
 							<tr>
 								<th>E-mail</th>
@@ -52,7 +50,7 @@
 							</tr>
 							<tr>
 								<th>Permanent Address</th>
-								<td>{{ ($profile->permanen_address == '') ? 'n/a' : $profile->permanen_address }}</td>
+								<td>{{ ($profile->permanent_address == '') ? 'n/a' : $profile->permanent_address }}</td>
 							</tr>
 							<tr>
 								<th>Verification Status</th>
