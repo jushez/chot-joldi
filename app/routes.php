@@ -19,6 +19,9 @@ Route::group(array('before' => 'csrf'), function(){
 
 	// HomeController routes
 	Route::post('save-profile', array('as' => 'save-profile', 'uses' => 'HomeController@saveProfile'));
+
+	// JobController routes
+	Route::post('save-job', array('as' => 'save-job', 'uses' => 'JobController@saveJob'));
 });
 
 // Authentication route group
@@ -30,6 +33,9 @@ Route::group(array('before' => 'auth'), function(){
 	Route::get('dashboard', array('as' => 'dashboard', 'uses' => "HomeController@getDashboard"));
 	Route::get('send-verification-email', array('as' => 'send-verification-email', 'uses' => "HomeController@sendVerificationEmail"));
 	Route::get('edit-profile', array('as' => 'edit-profile', 'uses' => 'HomeController@editProfile'));
+
+	// JobController
+	Route::get('job/new', array('as' => 'new-job', 'uses' => 'JobController@newJob'));
 
 });
 

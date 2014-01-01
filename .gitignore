@@ -6,3 +6,4 @@ composer.lock
 Thumbs.db
 app/config/local/*
 public/uploads/*
+.idea

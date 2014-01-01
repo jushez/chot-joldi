@@ -1,7 +1,23 @@
 <?php
 
+/*
+|--------------------------------------------------------------------------
+| JobController
+|--------------------------------------------------------------------------
+| Author: Mohammad Shoriful Islam Ronju
+| Email: smronju@gmail.com
+| Description: User related codes goes here.
+|
+*/
+
 class UserController extends BaseController {
 
+	/*
+	|-----------------------------------------------------------
+    | The master layout that should be used for responses.
+    |-----------------------------------------------------------
+    */
+    
 	protected $layout = 'layouts.master';
 
 	public function getLogin(){
