@@ -30,7 +30,7 @@
 						<table class="table">
 							<tr>
 								<th>Name</th>
-								<td>{{ $profile->first_name . ' ' . $profile->last_name }}</td>
+								<td>{{ Auth::user()->first_name . ' ' . Auth::user()->last_name }}</td>
 							</tr>
 							<tr>
 								<th>E-mail</th>

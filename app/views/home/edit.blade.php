@@ -10,14 +10,14 @@
 			<div class="form-group">
 				{{ Form::label('first_name', 'First Name:', array('class' => 'col-xs-3 control-label')) }}
 				<div class="col-xs-9">
-					{{ Form::text('first_name', $profile->first_name, array('class' => 'form-control validate[required, custom[onlyLetterSp]]', 'placeholder' => 'First name')) }}
+					{{ Form::text('first_name', Auth::user()->first_name, array('class' => 'form-control validate[required, custom[onlyLetterSp]]', 'placeholder' => 'First name')) }}
 				</div>
 			</div>
 
 			<div class="form-group">
 				{{ Form::label('last_name', 'Last Name:', array('class' => 'col-xs-3 control-label')) }}
 				<div class="col-xs-9">
-					{{ Form::text('last_name', $profile->last_name, array('class' => 'form-control validate[required, custom[onlyLetterSp]]', 'placeholder' => 'Last name')) }}
+					{{ Form::text('last_name', Auth::user()->last_name, array('class' => 'form-control validate[required, custom[onlyLetterSp]]', 'placeholder' => 'Last name')) }}
 				</div>
 			</div>
 
@@ -55,7 +55,7 @@
 			<div class="form-group">
 				{{ Form::label('mobile', 'Mobile:', array('class' => 'col-xs-3 control-label')) }}
 				<div class="col-xs-9">
-					{{ Form::text('mobile', $profile->mobile, array('class' => 'form-control validate[required, custom[integer], minSize[11], maxSize[11]]', 'placeholder' => 'Confirm Password')) }}
+					{{ Form::text('mobile', $profile->mobile, array('class' => 'form-control validate[required, custom[integer], minSize[11], maxSize[11]]', 'placeholder' => 'Your 11 digit mobile number')) }}
 				</div>
 			</div>
 

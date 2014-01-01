@@ -58,17 +58,17 @@ class UserController extends BaseController {
 	    if ($validator->fails()){
 	        return Redirect::back()->withInput()->withErrors($validator);
 	    }else{
-	    	$user = array(
+	    	$userData = array(
+	    		'first_name' => Input::get('first_name'),
+	    		'last_name' => Input::get('last_name'),
 	    		'email' => Input::get('email'),
 	    		'password' => Hash::make(Input::get('password')),
 	    		'type' => Input::get('type')
 	    	);
 
-	    	if($user = User::create($user)){
+	    	if($user = User::create($userData)){
 	    		$profileData = array(
 	    			'user_id' => $user->id,
-	    			'first_name' => Input::get('first_name'),
-	    			'last_name' => Input::get('last_name'),
 	    			'gender' => Input::get('gender'),
 	    			'mobile' => '',
 	    			'present_address' => '',

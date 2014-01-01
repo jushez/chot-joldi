@@ -79,8 +79,6 @@ class HomeController extends BaseController {
     		}
 
     		$profileData = array(
-    			'first_name' => Input::get('first_name'), 
-    			'last_name' => Input::get('last_name'), 
     			'gender' => Input::get('gender'), 
     			'mobile' => Input::get('mobile'), 
     			'present_address' => Input::get('present_address'), 
@@ -89,6 +87,7 @@ class HomeController extends BaseController {
     			'updated_at' => new DateTime()
     		);
 
+    		User::where('id', '=', Auth::user()->id)->update(array('first_name' => Input::get('first_name'), 'last_name' => Input::get('last_name')));
     		Profile::where('user_id', '=', Auth::user()->id)->update($profileData);
 
     		if(Input::has('password')){
