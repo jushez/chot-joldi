@@ -1,19 +1,6 @@
 <div class="row row-offcanvas row-offcanvas-right">
 
-	<div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
-		<div class="list-group">
-			<a href="#" class="list-group-item active">Job Board</a>
-			<a href="#" class="list-group-item">My Jobs</a>
-			<a href="#" class="list-group-item">Link</a>
-			<a href="#" class="list-group-item">Link</a>
-			<a href="#" class="list-group-item">Link</a>
-			<a href="#" class="list-group-item">Link</a>
-			<a href="#" class="list-group-item">Link</a>
-			<a href="#" class="list-group-item">Link</a>
-			<a href="#" class="list-group-item">Link</a>
-			<a href="#" class="list-group-item">Link</a>
-		</div>
-	</div><!--/span-->
+	{{ $sidebar }}
 
 	<div class="col-xs-12 col-sm-9">
 		
@@ -24,7 +11,6 @@
 						<h3 class="panel-title"><span class="glyphicon glyphicon-fire"></span> Personal Details</h3>
 					</div>
 					<div class="panel-body">
-						<!-- {{ HTML::image($profile->avatar_path, 'Avatar', array('class' => 'avatar')) }} -->
 						{{ HTML::image(($profile->avatar_path) ? Image::thumb($profile->avatar_path, 64) : (($profile->gender === 'Male') ? 'img/male.png' : 'img/female.png'), 'Avatar', array('class' => 'avatar'))}}
 						
 						<table class="table">
@@ -131,6 +117,6 @@
 				</div>
 			</div><!-- end span -->
 
-		</div><!--/row-->
-	</div><!--/span-->
+		</div><!-- end row-->
+	</div><!-- end span-->
 </div>

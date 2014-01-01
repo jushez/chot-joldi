@@ -1,6 +1,6 @@
 $(function(){
 	
-	$(".validate-me").validationEngine();
+	$(".validate-me").validationEngine({promptPosition : "topLeft"});
 
 	$('[data-toggle=offcanvas]').click(function() {
 		$('.row-offcanvas').toggleClass('active');

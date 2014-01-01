@@ -16,6 +16,7 @@ class CreateJobsTable extends Migration {
 		{
 			$table->increments('id');
 			$table->bigInteger('user_id');
+			$table->string('title', 50);
 			$table->text('description');
             $table->text('pickup_address');
             $table->timestamp('pickup_time');

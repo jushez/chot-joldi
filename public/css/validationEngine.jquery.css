@@ -39,7 +39,7 @@
 }
 
 .formError .formErrorContent {
-	width: 170%; /* Actual width 100% overriden */
+	width: 100%;
 	background: #ee0101;
 	position:relative;
 	color: #fff;

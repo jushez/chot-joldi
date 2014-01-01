@@ -1,5 +1,15 @@
 <?php
 
+/*
+|--------------------------------------------------------------------------
+| HomeController
+|--------------------------------------------------------------------------
+| Author: Mohammad Shoriful Islam Ronju
+| Email: smronju@gmail.com
+| Description: Dashboard codes goes here.
+|
+*/
+
 class HomeController extends BaseController {
 
 	/*
@@ -19,13 +29,14 @@ class HomeController extends BaseController {
     public function getDashboard(){
     	$this->layout->pageTitle = 'Chot Joldi - Dashboard';
     	$this->layout->active = 'dashboard';
+    	$this->layout->sidebar = 'new-job';
 
     	$data = array(
     		'profile' => User::find(Auth::user()->id)->getUserProfile,
     		'verification' => User::find(Auth::user()->id)->getUserVerification
     		);
 
-    	$this->layout->content = View::make('home.dashboard', $data);
+    	$this->layout->content = View::make('home.dashboard', $data)->nest('sidebar', 'common.sidebar', array('active' => 'job-board'));
     }
 
     public function editProfile(){
@@ -76,14 +87,14 @@ class HomeController extends BaseController {
 
     			// Save new profile picture
                 Image::upload(Input::file('profile_picture'), $fileName, 'avatars', true);
+                Profile::where('user_id', '=', Auth::user()->id)->update(array('avatar_path' => '/uploads/avatars/'. $fileName));
     		}
 
     		$profileData = array(
     			'gender' => Input::get('gender'), 
     			'mobile' => Input::get('mobile'), 
     			'present_address' => Input::get('present_address'), 
-    			'permanent_address' => Input::get('permanent_address'), 
-    			'avatar_path' => ($fileName) ? '/uploads/avatars/'. $fileName : '', 
+    			'permanent_address' => Input::get('permanent_address'),
     			'updated_at' => new DateTime()
     		);
 
