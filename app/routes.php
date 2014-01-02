@@ -14,8 +14,9 @@
 // CSRF route group
 Route::group(array('before' => 'csrf'), function(){
 	// UserController routes
-	Route::post('verify', array('as' => 'verify', 'before' => 'csrf', 'uses' => 'UserController@postLogin'));
-	Route::post('save-user', array('as' => 'save-user', 'before' => 'csrf', 'uses' => 'UserController@saveUser'));
+	Route::post('verify', array('as' => 'verify', 'uses' => 'UserController@postLogin'));
+	Route::post('save-user', array('as' => 'save-user', 'uses' => 'UserController@saveUser'));
+	Route::post('send-password-recovery-email', array('as' => 'send-password-recovery-email', 'uses' => 'UserController@sendPasswordRecoveryEmail'));
 
 	// HomeController routes
 	Route::post('save-profile', array('as' => 'save-profile', 'uses' => 'HomeController@saveProfile'));
@@ -46,7 +47,7 @@ Route::get('verify-email/{hash}', array('as' => 'verify-my-email', 'uses' => 'Ho
 
 // UserController routes
 Route::get('is-email-exist', array('as' => 'is-email-exist', 'uses' => 'UserController@isEmailExist'));
-
+Route::get('password-recovery', array('as' => 'password-recovery', 'uses' => 'UserController@passwordRecovery'));
 
 // Routes for testing
 Route::get('test', function(){
