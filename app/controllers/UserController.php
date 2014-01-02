@@ -139,4 +139,16 @@ class UserController extends BaseController {
 		Auth::logout();
 		return Redirect::route('login');
 	}
+
+	public function passwordRecovery(){
+		$this->layout->pageTitle = 'Chot Joldi - Password Recovery';
+		$this->layout->active = 'login';
+		$this->layout->content = View::make('user.password-recovery');
+	}
+
+	public function sendPasswordRecoveryEmail(){
+		echo '<pre>';
+		dd(Input::all());
+		exit;
+	}
 }

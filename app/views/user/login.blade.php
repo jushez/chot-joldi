@@ -24,6 +24,8 @@
 				{{ Form::submit('Sign in', array('class' => 'btn btn-primary')) }}
 				{{ Form::close() }}
 			</div>
+
+			{{ HTML::linkRoute('password-recovery', 'Forgot Password?', null, array('class' => 'pull-right')) }}
 		</div>
 	</div>
 </div>
