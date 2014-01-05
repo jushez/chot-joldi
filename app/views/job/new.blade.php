@@ -11,11 +11,12 @@
 						<h3 class="panel-title"><span class="glyphicon glyphicon-briefcase"></span> New Job</h3>
 					</div>
 					<div class="panel-body">
+						@include ('common.errors')
 						{{ Form::open(array('route' => 'save-job', 'class' => 'validate-me')) }}
 						<form role="form">
 							<div class="form-group">
 								{{ Form::label('title', 'Job title') }}
-								{{ Form::text('title', null, array('class' => 'form-control validate[required, maxSize[50]]', 'placeholder' => 'Job title')) }}
+								{{ Form::text('title', null, array('class' => 'form-control validate[required, custom[onlyLetterSp], maxSize[50]]', 'placeholder' => 'Job title')) }}
 							</div>
 							<div class="form-group">
 								{{ Form::label('description', 'Job description') }}
@@ -28,7 +29,7 @@
 							<div class="form-group">
 								{{ Form::label('pickup_time', 'Pickup time') }}
 								<div class='input-group date' id='pickuptime'>
-									{{ Form::text('pickup_time', null, array('class' => 'form-control validate[required, custom[dateTimeFormat], maxSize[30]]', 'data-format' => 'YYYY-MM-DD hh:mm:ss a', 'placeholder' => 'Pickup time')) }}
+									{{ Form::text('pickup_time', null, array('class' => 'form-control validate[required, custom[dateTimeFormat], maxSize[30]]', 'data-format' => 'YYYY-MM-DD hh:mm:ss A', 'placeholder' => 'Pickup time')) }}
 									<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
 								</div>
 							</div>
@@ -39,7 +40,7 @@
 							<div class="form-group">
 								{{ Form::label('drop_time', 'Drop time') }}
 								<div class='input-group date' id='droptime'>
-									{{ Form::text('drop_time', null, array('class' => 'form-control validate[required, custom[dateTimeFormat], maxSize[30]]', 'data-format' => 'YYYY-MM-DD hh:mm:ss a', 'placeholder' => 'Drop time')) }}
+									{{ Form::text('drop_time', null, array('class' => 'form-control validate[required, custom[dateTimeFormat], maxSize[30]]', 'data-format' => 'YYYY-MM-DD hh:mm:ss A', 'placeholder' => 'Drop time')) }}
 									<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
 								</div>
 								
@@ -50,7 +51,7 @@
 							</div>
 							<div class="form-group">
 								{{ Form::label('job_value', 'Job value (tk)') }}
-								{{ Form::text('job_value', null, array('class' => 'form-control validate[required, custom[integer], maxSize[10]]', 'placeholder' => '500')) }}
+								{{ Form::text('job_value', null, array('class' => 'form-control validate[required, min[100], max[1000], custom[integer], maxSize[10]]', 'placeholder' => '500')) }}
 							</div>
 
 							{{ Form::submit('Save Job', array('class' => 'btn btn-primary')) }}
