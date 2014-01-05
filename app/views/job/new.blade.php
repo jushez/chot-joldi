@@ -19,23 +19,30 @@
 							</div>
 							<div class="form-group">
 								{{ Form::label('description', 'Job description') }}
-								{{ Form::textarea('description', null, array('class' => 'form-control validate[minSize[5], maxSize[500]]', 'rows' => 4, 'placeholder' => 'Job description')) }}
+								{{ Form::textarea('description', null, array('class' => 'form-control validate[required, minSize[5], maxSize[500]]', 'rows' => 4, 'placeholder' => 'Job description')) }}
 							</div>
 							<div class="form-group">
 								{{ Form::label('pickup_address', 'Pickup address') }}
-								{{ Form::textarea('pickup_address', null, array('class' => 'form-control validate[minSize[5], maxSize[100]]', 'rows' => 4, 'placeholder' => 'pickup_address')) }}
+								{{ Form::textarea('pickup_address', null, array('class' => 'form-control validate[required, minSize[5], maxSize[100]]', 'rows' => 4, 'placeholder' => 'pickup_address')) }}
 							</div>
 							<div class="form-group">
 								{{ Form::label('pickup_time', 'Pickup time') }}
-								{{ Form::text('pickup_time', null, array('class' => 'form-control validate[required, custom[dateTimeFormat], maxSize[50]]', 'placeholder' => 'Pickup time')) }}
+								<div class='input-group date' id='pickuptime'>
+									{{ Form::text('pickup_time', null, array('class' => 'form-control validate[required, custom[dateTimeFormat], maxSize[30]]', 'data-format' => 'YYYY-MM-DD hh:mm:ss a', 'placeholder' => 'Pickup time')) }}
+									<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+								</div>
 							</div>
 							<div class="form-group">
 								{{ Form::label('drop_address', 'Drop address') }}
-								{{ Form::textarea('drop_address', null, array('class' => 'form-control validate[minSize[5], maxSize[100]]', 'rows' => 4, 'placeholder' => 'Drop address')) }}
+								{{ Form::textarea('drop_address', null, array('class' => 'form-control validate[required, minSize[5], maxSize[100]]', 'rows' => 4, 'placeholder' => 'Drop address')) }}
 							</div>
 							<div class="form-group">
 								{{ Form::label('drop_time', 'Drop time') }}
-								{{ Form::text('drop_time', null, array('class' => 'form-control validate[required, custom[dateTimeFormat], maxSize[20]]', 'placeholder' => 'Drop time')) }}
+								<div class='input-group date' id='droptime'>
+									{{ Form::text('drop_time', null, array('class' => 'form-control validate[required, custom[dateTimeFormat], maxSize[30]]', 'data-format' => 'YYYY-MM-DD hh:mm:ss a', 'placeholder' => 'Drop time')) }}
+									<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+								</div>
+								
 							</div>
 							<div class="form-group">
 								{{ Form::label('distance', 'Distance (km)') }}
