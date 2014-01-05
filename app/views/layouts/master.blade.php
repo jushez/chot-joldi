@@ -12,6 +12,7 @@
 
     {{ HTML::style('css/bootstrap.min.css') }}
     {{ HTML::style('css/validationEngine.jquery.css') }}
+    {{ HTML::style('css/bootstrap-datetimepicker.min.css') }}
     {{ HTML::style('css/style.css') }}
 
     <!-- Just for debugging purposes. Don't actually copy this line! -->
@@ -42,6 +43,8 @@
 
     {{ HTML::script('js/jquery.js') }}
     {{ HTML::script('js/bootstrap.min.js') }}
+    {{ HTML::script('js/moment.min.js') }}
+    {{ HTML::script('js/bootstrap-datetimepicker.js') }}
     {{ HTML::script('js/jquery.validationEngine-en.js') }}
     {{ HTML::script('js/jquery.validationEngine.js') }}
     {{ HTML::script('js/script.js') }}
