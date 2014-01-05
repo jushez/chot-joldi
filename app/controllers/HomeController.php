@@ -56,7 +56,7 @@ class HomeController extends BaseController {
     		'confirm_password' => 'Same:password',
     		'present_address' => 'Required|Between:5,100',
     		'permanent_address' => 'Between:5,100',
-    		);
+    	);
 
     	$validator = Validator::make(Input::all(), $rules);
 
