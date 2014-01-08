@@ -14,6 +14,9 @@ $(function(){
 	    }
 	});
 
+	// Tooltip
+	$('.tips').tooltip();
+
 	// Sidebar toggle for mobile device
 	$('[data-toggle=offcanvas]').click(function() {
 		$('.row-offcanvas').toggleClass('active');

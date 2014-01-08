@@ -37,6 +37,7 @@ Route::group(array('before' => 'auth'), function(){
 
 	// JobController
 	Route::get('job/new', array('as' => 'new-job', 'uses' => 'JobController@newJob'));
+	Route::get('all-jobs', array('as' => 'all-jobs', 'uses' => 'JobController@allJobs'));
 
 });
 

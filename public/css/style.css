@@ -103,3 +103,12 @@ body {
   width: 64px;
   margin-bottom: 10px;
 }
+
+.actions{
+  margin: 0;
+}
+
+.black.glyphicon{
+  color: #000000;
+  text-decoration: none;
+}
