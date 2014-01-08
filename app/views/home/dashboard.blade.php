@@ -77,7 +77,23 @@
 						<h3 class="panel-title">Job Posted</h3>
 					</div>
 					<div class="panel-body">
-						List of latest 10 job posted :)
+						<p><strong>Latest 10 jobs you posted!</strong></p>
+						<table class="table table-striped table-condensed table-hover">
+							@foreach ($jobs as $job)
+							<tr>
+								<td>{{ $job->title }}</td>
+								<td>
+									<ul class="list-inline actions pull-right">
+										<li><a href="#" class="tips black glyphicon glyphicon-eye-open" title="view"></a></li>
+										<li><a href="#" class="tips black glyphicon glyphicon-edit" title="edit"></a></li>
+										<li><a href="#" class="tips black glyphicon glyphicon-trash" title="delete"></a></li>
+									</ul>
+								</td>
+							</tr>
+							@endforeach
+						</table>
+
+						{{ HTML::linkRoute('all-jobs', 'View all jobs', null, array('class' => 'btn btn-info')) }}
 					</div>
 				</div>
 			</div><!-- end span -->			

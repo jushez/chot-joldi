@@ -60,10 +60,19 @@ class JobController extends BaseController{
 
             if(Job::create($jobData)){
                 return Redirect::route('dashboard')->with('messages', 'New job created successfully!');
+            }else{
+                App::error(function(InvalidUserException $exception){
+                    Log::error($exception);
+                    return 'Sorry! Something is wrong with this account!';
+                });
             }
         }
+    }
 
-    	
+    public function allJobs(){
+        // TODO: Implement pagination
+        dd(DB::table('jobs')->skip(0)->take(10)->get());
+
     }
 
 
