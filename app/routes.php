@@ -38,6 +38,9 @@ Route::group(array('before' => 'auth'), function(){
 	// JobController
 	Route::get('job/new', array('as' => 'new-job', 'uses' => 'JobController@newJob'));
 	Route::get('all-jobs', array('as' => 'all-jobs', 'uses' => 'JobController@allJobs'));
+	Route::get('job/view/{id}', array('as' => 'view-job', 'uses' => 'JobController@viewJob'));
+	Route::get('job/edit/{id}', array('as' => 'edit-job', 'uses' => 'JobController@editJob'));
+	Route::get('job/delete/{id}', array('as' => 'delete-job', 'uses' => 'JobController@deleteJob'));
 
 });
 

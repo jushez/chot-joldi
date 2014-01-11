@@ -37,7 +37,7 @@ class HomeController extends BaseController {
             'jobs' => Job::getLetestTenJobs()
     	);
 
-    	$this->layout->content = View::make('home.dashboard', $data)->nest('sidebar', 'common.sidebar', array('active' => 'job-board'));
+    	$this->layout->content = View::make('home.dashboard', $data)->nest('sidebar', 'common.sidebar', array('active' => 'dashboard'));
     }
 
     public function editProfile(){
