@@ -76,5 +76,20 @@ class JobController extends BaseController{
         $this->layout->content = View::make('job.all', array('jobs' => $jobs))->nest('sidebar', 'common.sidebar', array('active' => 'my-jobs'));
     }
 
+    public function viewJob($id){
+        dd($id);
+        exit;
+    }
+
+    public function editJob($id){
+        dd($id);
+        exit;
+    }
+
+    public function deleteJob($id){
+        dd($id);
+        exit;
+    }
+
 
 }

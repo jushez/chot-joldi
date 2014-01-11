@@ -84,9 +84,9 @@
 								<td>{{ $job->title }}</td>
 								<td>
 									<ul class="list-inline actions pull-right">
-										<li><a href="#" class="tips black glyphicon glyphicon-eye-open" title="view"></a></li>
-										<li><a href="#" class="tips black glyphicon glyphicon-edit" title="edit"></a></li>
-										<li><a href="#" class="tips black glyphicon glyphicon-trash" title="delete"></a></li>
+										<li>{{ HTML::linkRoute('view-job', '', array('id' => $job->id), array('class' => 'tips black glyphicon glyphicon-eye-open', 'title' => 'view')) }}</li>
+										<li>{{ HTML::linkRoute('edit-job', '', array('id' => $job->id), array('class' => 'tips black glyphicon glyphicon-edit', 'title' => 'edit')) }}</li>
+										<li>{{ HTML::linkRoute('delete-job', '', array('id' => $job->id), array('class' => 'tips black glyphicon glyphicon-trash', 'title' => 'delete')) }}</li>
 									</ul>
 								</td>
 							</tr>
