@@ -70,9 +70,10 @@ class JobController extends BaseController{
     }
 
     public function allJobs(){
-        // TODO: Implement pagination
-        dd(DB::table('jobs')->skip(0)->take(10)->get());
-
+        $jobs = Job::where('user_id', '=', Auth::user()->id)->paginate(15);
+        $this->layout->pageTitle = 'Chot Joldi - All Jobs';
+        $this->layout->active = 'dashboard';
+        $this->layout->content = View::make('job.all', array('jobs' => $jobs))->nest('sidebar', 'common.sidebar', array('active' => 'my-jobs'));
     }
 
 
