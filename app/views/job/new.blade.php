@@ -12,8 +12,7 @@
 					</div>
 					<div class="panel-body">
 						@include ('common.errors')
-						{{ Form::open(array('route' => 'save-job', 'class' => 'validate-me')) }}
-						<form role="form">
+						{{ Form::open(array('route' => 'save-job', 'class' => 'validate-me', 'role' => 'form')) }}
 							<div class="form-group">
 								{{ Form::label('title', 'Job title') }}
 								{{ Form::text('title', null, array('class' => 'form-control validate[required, custom[onlyLetterSp], maxSize[50]]', 'placeholder' => 'Job title')) }}
