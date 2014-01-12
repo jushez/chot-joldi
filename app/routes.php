@@ -42,6 +42,7 @@ Route::group(array('before' => 'auth'), function(){
 	Route::get('job/view/{id}', array('as' => 'view-job', 'uses' => 'JobController@viewJob'))->where('id', '[0-9]+');
 	Route::get('job/edit/{id}', array('as' => 'edit-job', 'uses' => 'JobController@editJob'))->where('id', '[0-9]+');
 	Route::get('job/delete/{id}', array('as' => 'delete-job', 'uses' => 'JobController@deleteJob'))->where('id', '[0-9]+');
+	Route::get('restore-job/{id}', array('as' => 'restore-job', 'uses' => 'JobController@restoreJob'))->where('id', '[0-9]+');
 
 });
 
@@ -62,6 +63,8 @@ Route::get('password-recovery', array('as' => 'password-recovery', 'uses' => 'Us
 
 // Routes for testing
 Route::get('test', function(){
+	// dd(Job::onlyTrashed()->get());
+	// dd(Job::onlyTrashed()->restore());
 	echo App::environment();
 	// print_r(Config::get('image.upload_path'));
 });
