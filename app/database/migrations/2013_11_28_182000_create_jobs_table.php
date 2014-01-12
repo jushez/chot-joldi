@@ -25,6 +25,7 @@ class CreateJobsTable extends Migration {
             $table->integer('distance')->nullable();
             $table->float('job_value');
             $table->integer('status');
+            $table->softDeletes();
 			$table->timestamps();
 		});
 	}
