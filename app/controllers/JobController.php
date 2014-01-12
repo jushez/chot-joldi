@@ -70,15 +70,16 @@ class JobController extends BaseController{
     }
 
     public function allJobs(){
-        $jobs = Job::where('user_id', '=', Auth::user()->id)->paginate(15);
         $this->layout->pageTitle = 'Chot Joldi - All Jobs';
         $this->layout->active = 'dashboard';
+        $jobs = Job::where('user_id', '=', Auth::user()->id)->paginate(15);
         $this->layout->content = View::make('job.all', array('jobs' => $jobs))->nest('sidebar', 'common.sidebar', array('active' => 'my-jobs'));
     }
 
     public function viewJob($id){
-        dd($id);
-        exit;
+        $this->layout->pageTitle = 'Chot Joldi - All Jobs';
+        $this->layout->active = 'dashboard';
+        $this->layout->content = View::make('job.single', array('job' => Job::find($id)))->nest('sidebar', 'common.sidebar', array('active' => 'my-jobs'));
     }
 
     public function editJob($id){

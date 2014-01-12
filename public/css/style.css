@@ -110,5 +110,13 @@ body {
 
 .black.glyphicon{
   color: #000000;
+}
+
+.white.glyphicon{
+  color: #ffffff;
+}
+
+.black.glyphicon,
+.white.glyphicon{
   text-decoration: none;
 }
