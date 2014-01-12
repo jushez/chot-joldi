@@ -34,7 +34,7 @@ class HomeController extends BaseController {
     	$data = array(
     		'profile' => User::find(Auth::user()->id)->getUserProfile,
     		'verification' => User::find(Auth::user()->id)->getUserVerification,
-            'jobs' => Job::getLetestTenJobs()
+            'jobs' => Job::whereRaw('user_id = ' .Auth::user()->id)->orderBy('id', 'desc')->take(10)->get()
     	);
 
     	$this->layout->content = View::make('home.dashboard', $data)->nest('sidebar', 'common.sidebar', array('active' => 'dashboard'));

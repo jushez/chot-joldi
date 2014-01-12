@@ -50,7 +50,7 @@
 							</div>
 							<div class="form-group">
 								{{ Form::label('job_value', 'Job value (tk)') }}
-								{{ Form::text('job_value', null, array('class' => 'form-control validate[required, min[100], max[1000], custom[integer], maxSize[10]]', 'placeholder' => '500')) }}
+								{{ Form::text('job_value', null, array('class' => 'form-control validate[required, min[100], max[1000], custom[integer], maxSize[10]]', 'placeholder' => 'e.g: 500')) }}
 							</div>
 
 							{{ Form::submit('Save Job', array('class' => 'btn btn-primary')) }}

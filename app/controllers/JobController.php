@@ -34,7 +34,7 @@ class JobController extends BaseController{
             'pickup_time' => 'Required|Date_format:Y-m-d h:i:s A|Min:5|Max:30',
             'drop_address' => 'Required|Min:5|Max:100',
             'drop_time' => 'Required|Date_format:Y-m-d h:i:s A|Min:5|Max:30',
-            'distance' => 'Required|Integer|Min:1|Max:10',
+            'distance' => 'Required|Integer|Min:1|Max:100',
             'job_value' => 'Required|Integer|Min:100|Max:1000'
         );
 
@@ -91,34 +91,73 @@ class JobController extends BaseController{
     }
 
     public function updateJob(){
-        $jobData = array(
-            'title' => Input::get('title'),
-            'description' => Input::get('description'),
-            'pickup_address' => Input::get('pickup_address'),
-            'pickup_time' => Input::get('pickup_time'),
-            'drop_address' => Input::get('drop_address'),
-            'drop_time' => Input::get('drop_time'),
-            'distance' => Input::get('distance'),
-            'job_value' => Input::get('job_value'),
-            'updated_at' => new DateTime()
+        $rules = array(
+            'title' => 'Required|Min:5|Max:50',
+            'description' => 'Required|Min:5|Max:500',
+            'pickup_address' => 'Required|Min:5|Max:100',
+            'pickup_time' => 'Required|Date_format:Y-m-d h:i:s A|Min:5|Max:30',
+            'drop_address' => 'Required|Min:5|Max:100',
+            'drop_time' => 'Required|Date_format:Y-m-d h:i:s A|Min:5|Max:30',
+            'distance' => 'Required|Integer|Min:1|Max:100',
+            'job_value' => 'Required|Integer|Min:100|Max:1000'
         );
 
-        $affectedRows = Job::where('id', '=', Input::get('job_id'))->update($jobData);
+        $validator = Validator::make(Input::all(), $rules);
 
-        if($affectedRows > 0){
-            return Redirect::route('dashboard')->with('messages', 'Job updated successfully!');
+        if($validator->fails()){
+            return Redirect::back()->withInput()->with('errors', $validator->messages());
         }else{
-            App::error(function(InvalidUserException $exception){
-                Log::error($exception);
-                return 'Sorry! Something went wrong saving this job!';
-            });
+            $jobData = array(
+                'title' => Input::get('title'),
+                'description' => Input::get('description'),
+                'pickup_address' => Input::get('pickup_address'),
+                'pickup_time' => Input::get('pickup_time'),
+                'drop_address' => Input::get('drop_address'),
+                'drop_time' => Input::get('drop_time'),
+                'distance' => Input::get('distance'),
+                'job_value' => Input::get('job_value'),
+                'updated_at' => new DateTime()
+            );
+
+            $affectedRows = Job::where('id', '=', Input::get('job_id'))->update($jobData);
+
+            if($affectedRows > 0){
+                return Redirect::route('dashboard')->with('messages', 'Job updated successfully!');
+            }else{
+                App::error(function(InvalidUserException $exception){
+                    Log::error($exception);
+                    return 'Sorry! Something went wrong saving this job!';
+                });
+            }
         }
     }
 
     public function deleteJob($id){
-        dd($id);
-        exit;
+        $affectedRows = Job::where('id', '=', $id)->delete();
+
+        if($affectedRows > 0){
+            return Redirect::back()->with('messages', 'Job deleted successfully! ' .HTML::linkRoute('restore-job', 'Undo', array('id' => $id)). ' delete!');
+        }else{
+            App::error(function(InvalidUserException $exception){
+                Log::error($exception);
+                return 'Sorry! Something went wrong deleting this job!';
+            });
+        }
     }
+
+    
+    public function restoreJob($id){
+        if(Job::onlyTrashed()->where('id', $id)->restore()){
+            return Redirect::back()->with('messages', 'Job restored successfully!');
+        }else{
+            App::error(function(InvalidUserException $exception){
+                Log::error($exception);
+                return 'Sorry! Something went wrong retoring this job!';
+            });
+        }
+    }
+
+
 
 
 }
