@@ -23,6 +23,7 @@ Route::group(array('before' => 'csrf'), function(){
 
 	// JobController routes
 	Route::post('save-job', array('as' => 'save-job', 'uses' => 'JobController@saveJob'));
+	Route::post('update-job', array('as' => 'update-job', 'uses' => 'JobController@updateJob'));
 });
 
 // Authentication route group

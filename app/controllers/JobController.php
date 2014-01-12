@@ -77,14 +77,42 @@ class JobController extends BaseController{
     }
 
     public function viewJob($id){
-        $this->layout->pageTitle = 'Chot Joldi - All Jobs';
+        $job = Job::find($id);
+        $this->layout->pageTitle = 'Chot Joldi - '. $job->title;
         $this->layout->active = 'dashboard';
-        $this->layout->content = View::make('job.single', array('job' => Job::find($id)))->nest('sidebar', 'common.sidebar', array('active' => 'my-jobs'));
+        $this->layout->content = View::make('job.single', array('job' => $job))->nest('sidebar', 'common.sidebar', array('active' => 'my-jobs'));
     }
 
     public function editJob($id){
-        dd($id);
-        exit;
+        $job = Job::find($id);
+        $this->layout->pageTitle = 'Chot Joldi - '. $job->title;
+        $this->layout->active = 'dashboard';
+        $this->layout->content = View::make('job.edit', array('job' => $job))->nest('sidebar', 'common.sidebar', array('active' => 'my-jobs'));
+    }
+
+    public function updateJob(){
+        $jobData = array(
+            'title' => Input::get('title'),
+            'description' => Input::get('description'),
+            'pickup_address' => Input::get('pickup_address'),
+            'pickup_time' => Input::get('pickup_time'),
+            'drop_address' => Input::get('drop_address'),
+            'drop_time' => Input::get('drop_time'),
+            'distance' => Input::get('distance'),
+            'job_value' => Input::get('job_value'),
+            'updated_at' => new DateTime()
+        );
+
+        $affectedRows = Job::where('id', '=', Input::get('job_id'))->update($jobData);
+
+        if($affectedRows > 0){
+            return Redirect::route('dashboard')->with('messages', 'Job updated successfully!');
+        }else{
+            App::error(function(InvalidUserException $exception){
+                Log::error($exception);
+                return 'Sorry! Something went wrong saving this job!';
+            });
+        }
     }
 
     public function deleteJob($id){
