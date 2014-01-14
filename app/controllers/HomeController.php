@@ -23,7 +23,13 @@ class HomeController extends BaseController {
     public function getHome(){
     	$this->layout->pageTitle = 'Chot Joldi - Bike Messenger';
     	$this->layout->active = 'home';
-    	$this->layout->content = View::make('home.index');
+
+        $data = array(
+            'jobs' => Job::where('status', '=', 1)->get(),
+            'applied_jobs' => AppliedJobs::getAppliedJobsArray(Auth::user()->id)
+        );
+
+    	$this->layout->content = View::make('home.index', $data);
     }
 
     public function getDashboard(){

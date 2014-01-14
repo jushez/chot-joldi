@@ -40,9 +40,11 @@ Route::group(array('before' => 'auth'), function(){
 	Route::get('job/new', array('as' => 'new-job', 'uses' => 'JobController@newJob'));
 	Route::get('all-jobs', array('as' => 'all-jobs', 'uses' => 'JobController@allJobs'));
 	Route::get('job/view/{id}', array('as' => 'view-job', 'uses' => 'JobController@viewJob'))->where('id', '[0-9]+');
+	Route::get('job/details/{id}', array('as' => 'job-details', 'uses' => 'JobController@jobDetails'))->where('id', '[0-9]+');
 	Route::get('job/edit/{id}', array('as' => 'edit-job', 'uses' => 'JobController@editJob'))->where('id', '[0-9]+');
 	Route::get('job/delete/{id}', array('as' => 'delete-job', 'uses' => 'JobController@deleteJob'))->where('id', '[0-9]+');
 	Route::get('restore-job/{id}', array('as' => 'restore-job', 'uses' => 'JobController@restoreJob'))->where('id', '[0-9]+');
+	Route::get('job/apply/{id}', array('as' => 'job-apply', 'uses' => 'JobController@jobApply'))->where('id', '[0-9]+');
 
 });
 

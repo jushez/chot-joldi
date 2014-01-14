@@ -144,7 +144,6 @@ class JobController extends BaseController{
             });
         }
     }
-
     
     public function restoreJob($id){
         if(Job::onlyTrashed()->where('id', $id)->restore()){
@@ -157,7 +156,36 @@ class JobController extends BaseController{
         }
     }
 
+    public function jobDetails($id){
+        $job = Job::find($id);
+        $this->layout->pageTitle = 'Chot Joldi - '. $job->title;
+        $this->layout->active = 'dashboard';
+        $this->layout->content = View::make('job.details', array('job' => $job));
+    }
 
+    public function jobApply($id){
+        $data = array(
+            'user_id' => Auth::user()->id,
+            'job_id' => $id,
+            'rating' => 0,
+            'rated_by' => '',
+            'status' => 'Pending',
+            'created_at' => new DateTime(),
+            'updated_at' => new DateTime()
+        );
 
+        if(AppliedJobs::where('status', '=', 'Pending')->count() == 5){
+            return Redirect::back()->with('messages', 'Sorry! you can\'t apply this job right now. Complete the pending first.');
+        }else{
+            if(AppliedJobs::create($data)){
+                return Redirect::back()->with('messages', 'You have applied this successfully!');
+            }else{
+                App::error(function(InvalidUserException $exception){
+                    Log::error($exception);
+                    return 'Sorry! Something went wrong retoring this job!';
+                });
+            }
+        }
+    }
 
 }

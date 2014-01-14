@@ -8,7 +8,12 @@
 			<div class="col-12 col-sm-6 col-lg-12">
 				<div class="panel panel-primary">
 					<div class="panel-heading">
-						<h3 class="panel-title"><span class="glyphicon glyphicon-briefcase"></span> {{ $job->title }} {{ HTML::linkRoute('edit-job', '', array('id' => $job->id), array('class' => 'tips pull-right white glyphicon glyphicon-edit', 'title' => 'edit')) }}</h3>
+						<h3 class="panel-title">
+							<span class="glyphicon glyphicon-briefcase"></span> {{ $job->title }}
+							@if(Auth::user()->type === 'Job Poster' && Auth::user()->id == $job->user_id)
+							{{ HTML::linkRoute('edit-job', '', array('id' => $job->id), array('class' => 'tips pull-right white glyphicon glyphicon-edit', 'title' => 'edit')) }}
+							@endif
+						</h3>
 					</div>
 					<div class="panel-body">
 						
@@ -39,7 +44,7 @@
 							</tr>
 							<tr>
 								<th>Job value</th>
-								<td>{{ $job->job_value }}</td>
+								<td>{{ $job->job_value }} TK</td>
 							</tr>
 							<tr>
 								<th>Created at</th>
