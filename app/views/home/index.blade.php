@@ -22,8 +22,10 @@
 			<div class="panel-footer">
 				<div class="btn-group btn-group-justified">
 					{{ HTML::linkRoute('job-details', 'View', $job->id, array('class' => 'btn btn-info')) }}
-					<!-- TODO: Make button disable if already applied -->
-					{{ HTML::linkRoute('job-apply', 'Apply', $job->id, array('class' => 'btn btn-primary') }}
+					@if(Auth::user()->type === 'Job Seeker')
+					{{ HTML::linkRoute('job-apply', 'Apply', $job->id, ($applied_jobs && in_array($job->id, $applied_jobs)) ? array('class' => 'btn btn-primary', 'disabled' => 'disabled') : array('class' => 'btn btn-primary')) }}
+					@endif
+					
 				</div>
 			</div>
 		</div>

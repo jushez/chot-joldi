@@ -26,9 +26,9 @@ class HomeController extends BaseController {
 
         $data = array(
             'jobs' => Job::where('status', '=', 1)->get(),
-            'applied_jobs' => AppliedJobs::getAppliedJobsArray(Auth::user()->id)
+            'applied_jobs' =>  (Auth::check()) ? AppliedJobs::getAppliedJobsArray(Auth::user()->id) : ''
         );
-
+        
     	$this->layout->content = View::make('home.index', $data);
     }
 
