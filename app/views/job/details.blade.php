@@ -28,7 +28,7 @@
 				<div class="btn-group btn-group-justified">
 					<a href="{{ URL::previous() }}" title="Go back" class="btn btn-info">Back</a>
 					@if(Auth::user()->type === 'Job Seeker')
-					<a role="button" class="btn btn-primary">Apply</a>
+					{{ HTML::linkRoute('job-apply', 'Apply', $job->id, ($is_applied) ? array('class' => 'btn btn-primary', 'disabled' => 'disabled') : array('class' => 'btn btn-primary')) }}
 					@endif
 				</div>
 			</div>
