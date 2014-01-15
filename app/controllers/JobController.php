@@ -157,10 +157,14 @@ class JobController extends BaseController{
     }
 
     public function jobDetails($id){
-        $job = Job::find($id);
-        $this->layout->pageTitle = 'Chot Joldi - '. $job->title;
+        $data = array(
+            'job' => Job::find($id),
+            'is_applied' => (AppliedJobs::where('job_id', '=', $id)->first()) ? true : false
+        );
+
+        $this->layout->pageTitle = 'Chot Joldi - '. $data['job']->title;
         $this->layout->active = 'dashboard';
-        $this->layout->content = View::make('job.details', array('job' => $job));
+        $this->layout->content = View::make('job.details', $data);
     }
 
     public function jobApply($id){

@@ -14,4 +14,5 @@ class AppliedJobs extends Eloquent{
 
 		return $result;
 	}
+
 }
