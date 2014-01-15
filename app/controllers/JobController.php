@@ -182,6 +182,7 @@ class JobController extends BaseController{
             return Redirect::back()->with('messages', 'Sorry! you can\'t apply this job right now. Complete the pending first.');
         }else{
             if(AppliedJobs::create($data)){
+                // TODO: Inform the job poster that someone applied to his job.
                 return Redirect::back()->with('messages', 'You have applied this successfully!');
             }else{
                 App::error(function(InvalidUserException $exception){
