@@ -45,6 +45,7 @@
 							<tr>
 								<th>Job value</th>
 								<td>{{ $job->job_value }} TK</td>
+								<td>{{ $job->job_value }}</td>
 							</tr>
 							<tr>
 								<th>Created at</th>
